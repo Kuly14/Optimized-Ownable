@@ -11,7 +11,11 @@ In this case it is pretty small since the these functions won't be used on a dai
 
 ## To Test
 
-1. Clone this repo
+1. Clone this repo;
+
+```bash
+git clone https://github.com/Kuly14/Optimized-Ownable.git
+```
 
 2. Install dependencies:
 
@@ -19,7 +23,7 @@ In this case it is pretty small since the these functions won't be used on a dai
 yarn
 ```
 
-3. Run the test command:
+3. Run the tests:
 
 ```bash
 yarn hardhat test
