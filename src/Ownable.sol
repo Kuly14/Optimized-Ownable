@@ -30,31 +30,46 @@ contract Ownable {
     }
 
     function transferOwnership(address newOwner) public onlyOwner {
+        // Get the eventHash
         bytes32 eventHash = bytes32(
             keccak256("TransferOwnershipProposed(address)")
         );
 
         assembly {
+            // Store the newOwner at slot 1 where the pendingOwner is stored
             sstore(1, newOwner)
 
+            // Store newOwner to memory so we can emit the data
             mstore(0x80, newOwner)
 
+            // Emit the data stored at memory address 0x80, with length of 32 bytes
             log1(0x80, 32, eventHash)
         }
     }
 
     function claimOwnership() public {
+        // Get the eventHash
         bytes32 eventHash = bytes32(keccak256("OwnershipTransfered(address)"));
         assembly {
+            // Get load pendingOwner from storage to the stack//
             let pending := sload(1)
+
+            // Check if the caller is the pending owner
             if iszero(eq(caller(), pending)) {
+                // Revert if not
                 revert(0, 0)
             }
 
+            // Store pendingOwner to memory from stack
+            mstore(0x80, pending)
+
+            // Store pending owner at the 0th slot. So owner = pendingOwner
             sstore(0, pending)
+
+            // Change the pending owner address to address(0) and get a gas refund
             sstore(1, 0x00)
 
-            mstore(0x80, pending)
+            // Emit the event
             log1(0x80, 32, eventHash)
         }
     }
