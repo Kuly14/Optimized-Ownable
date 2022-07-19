@@ -1,0 +1,11 @@
+1. TransferOwnership without assembly - 47549
+
+2. ClaimOwnership without assembly - 28087 
+
+1. TransferOwnership with assembly - 47291
+
+2. ClaimOwnership with assembly - 27490 
+
+1. Save 258 gas
+
+2. Save 597 gas
