@@ -67,5 +67,17 @@ describe("Ownable Tests", () => {
 
       await expect(users[1].test.claimOwnership()).to.be.reverted;
     });
+
+    it("Should test if the events are emitted correctly", async () => {
+      const { test, users, deployer } = await setup();
+
+      await expect(deployer.test.transferOwnership(users[0].address))
+        .to.emit(test, "TransferOwnershipProposed")
+        .withArgs(users[0].address);
+
+      await expect(users[0].test.claimOwnership())
+        .to.emit(test, "OwnershipTransfered")
+        .withArgs(users[0].address);
+    });
   });
 });
