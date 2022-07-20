@@ -51,7 +51,7 @@ contract Ownable {
         // Get the eventHash
         bytes32 eventHash = bytes32(keccak256("OwnershipTransfered(address)"));
         assembly {
-            // Get load pendingOwner from storage to the stack//
+            // Load pendingOwner from storage to the stack
             let pending := sload(1)
 
             // Check if the caller is the pending owner
