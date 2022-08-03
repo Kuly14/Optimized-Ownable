@@ -7,7 +7,7 @@ This contract is also optimized with the use of assembly to save some gas.
 
 You can find how much gas is saved in gas.txt
 
-In this case it is pretty small since the these functions won't be used on a daily basis but it's still something
+In this case it is pretty small since these functions won't be used on a daily basis but it's still something
 
 ## To Test
 
